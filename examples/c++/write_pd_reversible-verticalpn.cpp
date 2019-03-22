@@ -1,0 +1,138 @@
+#include <iostream>                        
+                                           
+#include <sbgn/SbgnTypes.h>                
+                                           
+int main(int argc, const char* argv[])     
+{                                          
+  auto* doc = new SbgnDocument();          
+                                           
+  SbgnGlyph* glyph = NULL;                 
+  SbgnState* state = NULL;                 
+  SbgnEntity* entity = NULL;               
+  SbgnCallout* co = NULL;                  
+  SbgnGlyph* clone = NULL;                 
+  SbgnLabel* label = NULL;                 
+  SbgnArc*   arc = NULL;                   
+  SbgnBBox*  bbox = NULL;                  
+  SbgnPoint* point = NULL;                 
+  SbgnPort*  port= NULL;                   
+                                           
+  auto* map = doc->createMap();            
+  map->setMetaId("map1");
+  map->setLanguage("process description");
+
+  glyph = map->createGlyph();
+  glyph->setId("glyph1");
+  glyph->setClazz("simple chemical");
+
+  label = glyph->createLabel();
+  label->setText("DHA-P");
+
+  bbox = glyph->createBBox();
+  bbox->setX(30);
+  bbox->setY(20);
+  bbox->setWidth(60);
+  bbox->setHeight(60);
+
+  glyph = map->createGlyph();
+  glyph->setId("glyph2");
+  glyph->setClazz("simple chemical");
+
+  label = glyph->createLabel();
+  label->setText("GA-3P");
+
+  bbox = glyph->createBBox();
+  bbox->setX(30);
+  bbox->setY(220);
+  bbox->setWidth(60);
+  bbox->setHeight(60);
+
+  glyph = map->createGlyph();
+  glyph->setId("glyph3");
+  glyph->setClazz("macromolecule");
+
+  label = glyph->createLabel();
+  label->setText("Triose-P&#10;Isomerase");
+
+  bbox = glyph->createBBox();
+  bbox->setX(150);
+  bbox->setY(120);
+  bbox->setWidth(120);
+  bbox->setHeight(60);
+
+  glyph = map->createGlyph();
+  glyph->setId("pn1");
+  glyph->setClazz("process");
+  glyph->setOrientation("vertical");
+
+  bbox = glyph->createBBox();
+  bbox->setX(50);
+  bbox->setY(140);
+  bbox->setWidth(20);
+  bbox->setHeight(20);
+
+  port = glyph->createPort();
+  port->setId("pn1.1");
+  port->setX(60);
+  port->setY(130);
+
+  port = glyph->createPort();
+  port->setId("pn1.2");
+  port->setX(60);
+  port->setY(170);
+
+  arc = map->createArc();
+  arc->setId("a1");
+  arc->setClazz("production");
+  arc->setSource("pn1.1");
+  arc->setTarget("glyph1");
+
+  point = arc->createStart();
+  point->setElementName("start");
+  point->setX(60);
+  point->setY(130);
+
+  point = arc->createEnd();
+  point->setElementName("end");
+  point->setX(60);
+  point->setY(80);
+
+  arc = map->createArc();
+  arc->setId("a2");
+  arc->setClazz("production");
+  arc->setSource("pn1.2");
+  arc->setTarget("glyph2");
+
+  point = arc->createStart();
+  point->setElementName("start");
+  point->setX(60);
+  point->setY(170);
+
+  point = arc->createEnd();
+  point->setElementName("end");
+  point->setX(60);
+  point->setY(220);
+
+  arc = map->createArc();
+  arc->setId("a3");
+  arc->setClazz("catalysis");
+  arc->setSource("glyph3");
+  arc->setTarget("pn1");
+
+  point = arc->createStart();
+  point->setElementName("start");
+  point->setX(150);
+  point->setY(150);
+
+  point = arc->createEnd();
+  point->setElementName("end");
+  point->setX(70);
+  point->setY(150);
+
+
+  writeSBGNToFile(doc, "out.sbgn");
+                                  
+  delete doc;                     
+                                  
+  return 0;                       
+}                                 

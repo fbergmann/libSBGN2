@@ -1,0 +1,4 @@
+Name: org.sedml.libsbgn
+Implementation-Title: "@PACKAGE_NAME@ Java API"
+Implementation-Version: "@LIBSBGN_VERSION@"
+Implementation-Vendor: "Frank T. Bergmann"
