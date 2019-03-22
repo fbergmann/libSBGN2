@@ -52,14 +52,14 @@
 namespace LIBSBGN_CPP_NAMESPACE 
 {
   const unsigned int SBGN_DEFAULT_LEVEL   = 0;
-  const unsigned int SBGN_DEFAULT_VERSION = 1;
+  const unsigned int SBGN_DEFAULT_VERSION = 3;
   const char* const SBGN_XMLNS_L0V3   = "http://sbgn.org/libsbgn/0.3";
   const char* const SBGN_XMLNS_L0V2   = "http://sbgn.org/libsbgn/0.2";
   const char* const SBGN_XMLNS_L0V1   = "http://sbgn.org/libsbgn/pd/0.1";
 }
 #else
 static const unsigned int SBGN_DEFAULT_LEVEL   = 0;
-static const unsigned int SBGN_DEFAULT_VERSION = 1;
+static const unsigned int SBGN_DEFAULT_VERSION = 3;
 static const char* const SBGN_XMLNS_L0V3   = "http://sbgn.org/libsbgn/0.3";
 static const char* const SBGN_XMLNS_L0V2   = "http://sbgn.org/libsbgn/0.2";
 static const char* const SBGN_XMLNS_L0V1   = "http://sbgn.org/libsbgn/pd/0.1";

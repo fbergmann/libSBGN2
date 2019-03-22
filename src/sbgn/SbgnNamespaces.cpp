@@ -65,8 +65,14 @@ SbgnNamespaces::initSbgnNamespace()
     switch (mVersion)
     {
     case 1:
-    default:
       mNamespaces->add(SBGN_XMLNS_L0V1);
+      break;
+    case 2:
+      mNamespaces->add(SBGN_XMLNS_L0V2);
+      break;
+    case 3:
+    default:
+      mNamespaces->add(SBGN_XMLNS_L0V3);
       break;
     }
     break;
@@ -117,6 +123,8 @@ SbgnNamespaces::getSupportedNamespaces()
 {
   List *result = new List();
   result->add(new SbgnNamespaces(0,1));
+  result->add(new SbgnNamespaces(0,2));
+  result->add(new SbgnNamespaces(0,3));
   return result;
 }
 
@@ -177,8 +185,14 @@ SbgnNamespaces::getSbgnNamespaceURI(unsigned int level,
     switch (version)
     {
     case 1:
-    default:
       uri = SBGN_XMLNS_L0V1;
+      break;
+    case 2:
+      uri = SBGN_XMLNS_L0V2;
+      break;
+    case 3:
+    default:
+      uri = SBGN_XMLNS_L0V3;
       break;
     }
     break;
@@ -319,6 +333,18 @@ SbgnNamespaces::isValidCombination()
       declaredURI.assign(SBGN_XMLNS_L0V1);
     }
 
+    if (xmlns->hasURI(SBGN_XMLNS_L0V2))
+    {
+      ++numNS;
+      declaredURI.assign(SBGN_XMLNS_L0V2);
+    }
+
+    if (xmlns->hasURI(SBGN_XMLNS_L0V3))
+    {
+      ++numNS;
+      declaredURI.assign(SBGN_XMLNS_L0V3);
+    }
+
     // checks if the SBGN Namespace is explicitly defined.
     for (int i=0; i < xmlns->getLength(); i++)
     {
@@ -334,28 +360,50 @@ SbgnNamespaces::isValidCombination()
 
   switch (getLevel())
   {
-    case 0:
-     switch (version)
+  case 0:
+    switch (version)
+    {
+    case 1:
+      // the namespaces contains the sbgn namespaces
+      // check it is the correct ns for the level/version
+      if (sbgnDeclared)
       {
-        case 1:
-          // the namespaces contains the sbgn namespaces
-          // check it is the correct ns for the level/version
-          if (sbgnDeclared)
-          {
-            if (declaredURI != string(SBGN_XMLNS_L0V1))
-            {
-              valid = false;
-            }
-          }
-          break;
-        default:
+        if (declaredURI != string(SBGN_XMLNS_L0V1))
+        {
           valid = false;
-          break;
         }
+      }
+      break;
+    case 2:
+      // the namespaces contains the sbgn namespaces
+      // check it is the correct ns for the level/version
+      if (sbgnDeclared)
+      {
+        if (declaredURI != string(SBGN_XMLNS_L0V2))
+        {
+          valid = false;
+        }
+      }
+      break;
+    case 3:
+      // the namespaces contains the sbgn namespaces
+      // check it is the correct ns for the level/version
+      if (sbgnDeclared)
+      {
+        if (declaredURI != string(SBGN_XMLNS_L0V3))
+        {
+          valid = false;
+        }
+      }
       break;
     default:
       valid = false;
       break;
+    }
+    break;
+  default:
+    valid = false;
+    break;
   }
 
   return valid;
