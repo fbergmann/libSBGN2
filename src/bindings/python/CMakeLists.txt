@@ -114,7 +114,7 @@ endif()
 
 if(APPLE OR UNIX)
   option (PYTHON_USE_DYNAMIC_LOOKUP
-  "Do not actually link against the python library, instead use the undefined lookup mechanism, that ." OFF)
+  "Do not actually link against the python library, instead use the undefined lookup mechanism, that ." ON)
   mark_as_advanced(PYTHON_USE_DYNAMIC_LOOKUP)
 endif(APPLE OR UNIX)
 

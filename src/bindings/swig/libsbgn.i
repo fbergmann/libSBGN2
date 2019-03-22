@@ -339,8 +339,19 @@ typedef std::vector<SbgnError> SbgnErrorStdVector;
 %include sbml/xml/XMLError.h
 %include sbml/xml/XMLErrorLog.h
 
-%include ASTNodes.i
 
+%include sbml/extension/ISBMLExtensionNamespaces.h
+%include sbml/extension/SBaseExtensionPoint.h
+%include sbml/extension/SBasePlugin.h
+%include sbml/extension/SBMLDocumentPlugin.h
+%include sbml/extension/SBMLExtension.h
+%include sbml/extension/SBMLExtensionException.h
+%include sbml/extension/SBMLExtensionNamespaces.h
+%include sbml/extension/SBMLExtensionRegistry.h
+
+%include ASTNodes.i
+%include layout-package.i
+%include render-package.i
 
 
 %include <sbgn/SbgnReader.h>

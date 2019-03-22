@@ -40,9 +40,11 @@
 #include <sbgn/common/libsbgn-version.h>
 #include <sbgn/common/SbgnOperationReturnValues.h>
 
-#include <sbgn/SbgnTypes.h>
-
 #include "ListWrapper.h"
+#include "layout-package.h"
+#include "render-package.h"
+
+#include <sbgn/SbgnTypes.h>
 
 #include <sbml/SyntaxChecker.h>
 #include <sbml/ExpectedAttributes.h>
