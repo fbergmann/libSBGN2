@@ -40,7 +40,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION.txt")
 endif()
 
 MATH(EXPR LIBSBGN_VERSION_NUMERIC "${LIBSBGN_VERSION_MAJOR} * 10000 + ${LIBSBGN_VERSION_MINOR} * 100 + ${LIBSBGN_VERSION_PATCH}" )
-set(PACKAGE_VERSION "${LIBSBGN_VERSION_MAJOR}.${LIBSBGN_VERSION_MINOR}.${LIBSBGN_VERSION_PATCH}${LIBSBGN_VERSION_RELEASE}")
+set(LIBSBGN_DOTTED_VERSION "${LIBSBGN_VERSION_MAJOR}.${LIBSBGN_VERSION_MINOR}.${LIBSBGN_VERSION_PATCH}${LIBSBGN_VERSION_RELEASE}")
 set(PACKAGE_NAME "libSBGN")
 
 # add make dist and make check target as they are already familiar for
@@ -58,8 +58,8 @@ include(InstallRequiredSystemLibraries)
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An API library for reading/writing/manipulating SBGN.")
 set(CPACK_PACKAGE_NAME "${PACKAGE_NAME}")
-set(CPACK_PACKAGE_VENDOR "The SBML Team")
-set(CPACK_PACKAGE_CONTACT "LibSBML Team <libsbml-team@caltech.edu>")
+set(CPACK_PACKAGE_VENDOR "Frank T. Bergmann")
+set(CPACK_PACKAGE_CONTACT "fbergman@caltech.edu")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt")
 set(CPACK_PACKAGE_VERSION_MAJOR "${LIBSBGN_VERSION_MAJOR}")
@@ -69,7 +69,7 @@ set(CPACK_RPM_PACKAGE_LICENSE "BSD")
 set(CPACK_RPM_PACKAGE_GROUP "Libraries/Development")
 set(CPACK_DEBIAN_PACKAGE_SECTION "Libraries")
 
-set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_CURRENT_BINARY_DIR};/out/;/.git/;/.svn/;/.libs/;/.deps/;/.bzr/;.*.pyc$;.*.o$;.*.lo$;.*.la$;${CPACK_SOURCE_IGNORE_FILES};/.DS_Store;/.svnignore;blib;libsbgn-dist")
+set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_CURRENT_BINARY_DIR};/out/;/.git/;/.svn/;/.libs/;/.deps/;/.bzr/;.*.pyc$;.*.o$;.*.lo$;.*.la$;${CPACK_SOURCE_IGNORE_FILES};/.DS_Store;/.svnignore;blib;libsbgn-dist;/.vs/;/.vscode/;build")
 
 if(UNIX)
     set(CPACK_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
@@ -494,11 +494,11 @@ if(UNIX)
         set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DLINUX")
     endif(APPLE)
 
-    add_definitions( -DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
-    set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\"")
+    add_definitions( -DPACKAGE_VERSION=\"${LIBSBGN_DOTTED_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
+    set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DPACKAGE_VERSION=\"${LIBSBGN_DOTTED_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\"")
 
 else(UNIX)
-    add_definitions(-DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
+    add_definitions(-DPACKAGE_VERSION=\"${LIBSBGN_DOTTED_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
     
     add_definitions(-DWIN32)
     set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DWIN32")
@@ -729,7 +729,7 @@ endif()
 
 message(STATUS "
 ----------------------------------------------------------------------
-libSBGN version ${PACKAGE_VERSION}
+libSBGN version ${LIBSBGN_DOTTED_VERSION}
 ----------------------------------------------------------------------
 
    More information and the latest version are available online at

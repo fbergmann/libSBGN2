@@ -16,7 +16,7 @@
  *
  * A version string of the form "1.2.3".
  */
-#define LIBSBGN_DOTTED_VERSION	"@PACKAGE_VERSION@"
+#define LIBSBGN_DOTTED_VERSION	"@LIBSBGN_DOTTED_VERSION@"
 
 
 /**

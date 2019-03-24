@@ -84,7 +84,7 @@ configure_file(
     ${CMAKE_CURRENT_BINARY_DIR}/sbgn/common/libsbgn-config-common.h
 )
 
-# Replace: @PACKAGE_VERSION@ and @LIBSBGN_VERSION_NUMERIC@
+# Replace: @LIBSBGN_DOTTED_VERSION@ and @LIBSBGN_VERSION_NUMERIC@
 configure_file (
   "${CMAKE_CURRENT_SOURCE_DIR}/sbgn/common/libsbgn-version.h.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/sbgn/common/libsbgn-version.h"

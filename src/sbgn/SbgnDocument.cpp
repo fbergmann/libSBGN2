@@ -853,21 +853,6 @@ void
 SbgnDocument::writeXMLNS(LIBSBML_CPP_NAMESPACE_QUALIFIER XMLOutputStream&
   stream) const
 {
-  // LIBSBML_CPP_NAMESPACE_QUALIFIER XMLNamespaces xmlns;
-  // std::string prefix = getPrefix();
-
-  // //if (prefix.empty())
-  // {
-  //   const LIBSBML_CPP_NAMESPACE_QUALIFIER XMLNamespaces* thisxmlns =
-  //     getNamespaces();
-  //   if (thisxmlns && thisxmlns->hasURI(SBGN_XMLNS_L0V2))
-  //   {
-  //     xmlns.add(SBGN_XMLNS_L0V2, prefix);
-  //   }
-  // }
-
-  // stream << xmlns;
-
  // need to check that we have indeed a namespace set!
   LIBSBML_CPP_NAMESPACE_QUALIFIER XMLNamespaces * thisNs = 
     const_cast<LIBSBML_CPP_NAMESPACE_QUALIFIER XMLNamespaces *>(getNamespaces());
