@@ -222,7 +222,7 @@ SbgnReader::readInternal (const char* content, bool isFile)
   {
     XMLInputStream stream(content, isFile, "", d->getErrorLog());
 
-    if (stream.peek().isStart() && stream.peek().getName() != "Extension")
+    if (stream.peek().isStart() && stream.peek().getName() != "sbgn")
     {
       // the root element ought to be an sbgn element. 
       d->getErrorLog()->logError(SbgnNotSchemaConformant);
