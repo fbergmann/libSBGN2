@@ -53,15 +53,36 @@ if (EXISTS ${BIN_DIRECTORY}/libsbgn.jar)
 	file(REMOVE ${BIN_DIRECTORY}/libsbgn.jar)	
 endif()
 
+# figure out the compativility args to use
+SET (COMPATIBILITY_ARGS)
+if (COMPATIBILIY)
+SET (COMPATIBILITY_ARGS ${COMPATIBILITY_ARGS} -source ${COMPATIBILIY} -target ${COMPATIBILIY})
+endif()
+
+
 # compile files
 execute_process(
-	COMMAND "${Java_JAVAC_EXECUTABLE}"
-		 -source 1.5
-		 -target 1.5
-		 -d java-files
-		 ${NATIVE_FILES}	
-	WORKING_DIRECTORY "${BIN_DIRECTORY}"
+
+  COMMAND "${Java_JAVAC_EXECUTABLE}"
+  ${COMPATIBILITY_ARGS}
+  -d java-files
+  ${NATIVE_FILES}
+
+  ERROR_VARIABLE COMPILE_ERRORS
+
+  WORKING_DIRECTORY "${BIN_DIRECTORY}"
 )
+
+
+if (NOT COMPILE_ERRORS STREQUAL "" AND COMPILE_ERRORS MATCHES "error")
+  message (FATAL_ERROR
+"
+Could not compile java wrappers:
+
+${COMPILE_ERRORS}
+")
+endif()
+
 
 # enumerate class files
 file(GLOB_RECURSE CLASS_FILES RELATIVE ${BIN_DIRECTORY}/java-files ${BIN_DIRECTORY}/java-files/org/sbgn/libsbgn/*.class)

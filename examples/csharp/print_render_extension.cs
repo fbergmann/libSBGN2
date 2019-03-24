@@ -54,7 +54,7 @@ public static int Main(string[] args)
 
   var doc = libsbgn.readSBGNFromFile(args[0]);
 
-  printRenderExtension(doc.getMap());
+  printRenderExtension(doc.getMap(0));
 
 
   return 0;

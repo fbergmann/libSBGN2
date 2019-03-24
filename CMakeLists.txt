@@ -321,11 +321,27 @@ endif(WITH_ZLIB)
 #
 
 if(WITH_CSHARP)
+    FILE(TO_CMAKE_PATH "$ENV{WINDIR}" windir)
     find_program(CSHARP_COMPILER
-        NAMES gmcs csc
-        PATHS C:/Windows/Microsoft.NET/Framework/v2.0.50727/ /usr/bin /usr/local/bin
-        DOC "The file name of the C# compiler."
-        )
+    NAMES gmcs csc mcs
+    PATHS
+        ${windir}/Microsoft.NET/Framework/v2.0.50727/
+        ${windir}/Microsoft.NET/Framework/v3.0/
+        /usr/bin
+        /usr/local/bin
+    DOC "The file name of the C# compiler for the libsbmlcs assembly."
+    )
+    find_program(CSHARP_EXAMPLE_COMPILER
+    NAMES gmcs csc mcs
+    PATHS
+        ${windir}/Microsoft.NET/Framework/v4.0.30319/
+        ${windir}/Microsoft.NET/Framework/v3.5/
+        ${windir}/Microsoft.NET/Framework/v3.0/
+        ${windir}/Microsoft.NET/Framework/v2.0.50727/
+        /usr/bin
+        /usr/local/bin
+    DOC "The file name of the C# compiler to be used for the examples."
+    )
     if(UNIX)
     else()
         if(CMAKE_SIZEOF_VOID_P EQUAL 4)

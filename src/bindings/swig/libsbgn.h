@@ -40,12 +40,6 @@
 #include <sbgn/common/libsbgn-version.h>
 #include <sbgn/common/SbgnOperationReturnValues.h>
 
-#include "ListWrapper.h"
-#include "layout-package.h"
-#include "render-package.h"
-
-#include <sbgn/SbgnTypes.h>
-
 #include <sbml/SyntaxChecker.h>
 #include <sbml/ExpectedAttributes.h>
 #include <sbml/SBase.h>
@@ -68,4 +62,17 @@
 #include <sbml/xml/XMLError.h>
 #include <sbml/xml/XMLErrorLog.h>
 
+#include <sbml/extension/ISBMLExtensionNamespaces.h>
+#include <sbml/extension/SBaseExtensionPoint.h>
+#include <sbml/extension/SBasePlugin.h>
+#include <sbml/extension/SBMLDocumentPlugin.h>
+#include <sbml/extension/SBMLExtension.h>
+#include <sbml/extension/SBMLExtensionException.h>
+#include <sbml/extension/SBMLExtensionNamespaces.h>
+#include <sbml/extension/SBMLExtensionRegistry.h>
 
+#include "ListWrapper.h"
+#include "layout-package.h"
+#include "render-package.h"
+
+#include <sbgn/SbgnTypes.h>

@@ -349,6 +349,9 @@ typedef std::vector<SbgnError> SbgnErrorStdVector;
 %include sbml/extension/SBMLExtensionNamespaces.h
 %include sbml/extension/SBMLExtensionRegistry.h
 
+%include sbml/SBase.h
+%include sbml/ListOf.h
+
 %include ASTNodes.i
 %include layout-package.i
 %include render-package.i

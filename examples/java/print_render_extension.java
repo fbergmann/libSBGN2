@@ -56,7 +56,7 @@ public static void main (String[] args)
   
   SbgnDocument doc = libsbgn.readSBGNFromFile(args[0]);
 
-  printRenderExtension(doc.getMap());
+  printRenderExtension(doc.getMap(0));
 
 }
 
