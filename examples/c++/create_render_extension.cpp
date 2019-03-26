@@ -9,7 +9,7 @@ int main(int argc, const char* argv[])
   auto* doc = new SbgnDocument();
 
   auto* map = doc->createMap();
-  map->setMetaId("map1");
+  map->setId("map1");
   map->setLanguage("process description");
 
   auto* glyph = map->createGlyph();
@@ -54,7 +54,10 @@ int main(int argc, const char* argv[])
   map->setRenderInformation(renderInfo);
   delete renderInfo;
 
-  writeSBGNToFile(doc, "out.sbgn");
+    std::string outfile = "out.sbgn";
+  if (argc > 1)
+    outfile = argv[1];
+  writeSBGNToFile(doc, outfile.c_str());
 
   delete doc;
 

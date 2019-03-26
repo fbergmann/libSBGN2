@@ -212,7 +212,10 @@ int main(int argc, const char* argv[])
   point->setY(160);
 
 
-  writeSBGNToFile(doc, "out.sbgn");
+    std::string outfile = "out.sbgn";
+  if (argc > 1)
+    outfile = argv[1];
+  writeSBGNToFile(doc, outfile.c_str());
                                   
   delete doc;                     
                                   

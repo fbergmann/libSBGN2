@@ -19,7 +19,7 @@ int main(int argc, const char* argv[])
   SbgnPort*  port= NULL;
 
   auto* map = doc->createMap();
-  map->setMetaId("map1");
+  map->setId("map1");
   map->setLanguage("entity relationship");
 
   glyph = map->createGlyph();
@@ -731,7 +731,10 @@ int main(int argc, const char* argv[])
   bbox->setHeight(17.5);
 
 
-  writeSBGNToFile(doc, "out.sbgn");
+    std::string outfile = "out.sbgn";
+  if (argc > 1)
+    outfile = argv[1];
+  writeSBGNToFile(doc, outfile.c_str());
 
   delete doc;
 

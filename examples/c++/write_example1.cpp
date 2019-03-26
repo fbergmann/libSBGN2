@@ -22,7 +22,10 @@ int main(int argc, const char* argv[])
   auto* label = glyph->createLabel();
   label->setText("greek letter alpha: &#x3b1;");
 
-  writeSBGNToFile(doc, "out.sbgn");
+    std::string outfile = "out.sbgn";
+  if (argc > 1)
+    outfile = argv[1];
+  writeSBGNToFile(doc, outfile.c_str());
 
   delete doc;
 
